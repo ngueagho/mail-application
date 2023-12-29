@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulaire d'envoi d'e-mail</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+    }
+
+    .container {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea {
+      width: 94%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+      color: #555;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    .form-group button {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+
+    }
+
+    .form-group button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 style="text-align: center; margin-bottom: 20px;">Formulaire d'envoi d'e-mail</h2>
+    <div class="form-group">
+      <label for="to">Destinataire :</label>
+      <input type="email" id="to" placeholder="Adresse e-mail du destinataire">
+    </div>
+    <div class="form-group">
+      <label for="from">Expéditeur :</label>
+      <input type="email" id="from" placeholder="Votre adresse e-mail">
+    </div>
+    <div class="form-group">
+      <label for="subject">Sujet :</label>
+      <input type="text" id="subject" placeholder="Sujet de l'e-mail">
+    </div>
+    <div class="form-group">
+      <label for="body">Contenu :</label>
+      <textarea id="body" placeholder="Contenu de l'e-mail"></textarea>
+    </div>
+    <div class="form-group" style="text-align: center;">
+      <button onclick="sendEmail()">Envoyer</button>
+    </div>
+  </div>
+
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script>
+    function sendEmail() {
+      const emailData = {
+        // SecureToken: "9e9a7bf2-fbd9-4289-9e6f-9ba2d8789775",
+        Host: "smtp.elasticemail.com",
+        Username: "transcam117@gmail.com",
+        Password: "B404CBD130CDE0FCE3C76BBBF7336100C3E9",
+        Port: "2525",
+        To: document.getElementById("to").value,
+        From: document.getElementById("from").value,
+        Subject: document.getElementById("subject").value,
+        Body: document.getElementById("body").value,
+      };
+
+      Email.send(emailData)
+        .then(function(response) {
+          console.log("L'e-mail a été envoyé avec succès :", response);
+        })
+        .catch(function(error) {
+          console.error("Une erreur s'est produite lors de l'envoi de l'e-mail :", error);
+        });
+    }
+  </script>
+</body>
+</html>
